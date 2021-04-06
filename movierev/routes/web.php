@@ -16,7 +16,8 @@ use App\Http\Controllers\LogoutController;
 |
 */
 
-Route::view('/', 'main')->name('login')->middleware('guest');
+Route::view('/', 'content');
+Route::view('authorization', 'login')->name('login')->middleware('guest');
 Route::post('login', LoginController::class)->middleware('guest');
 Route::get('dashboard', DashboardController::class)->middleware('auth');
 Route::get('logout', LogoutController::class);

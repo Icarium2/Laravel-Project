@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
@@ -13,7 +14,7 @@ class LoginController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (Auth::attempt($credentials)) {
-            return redirect('dashboard');
+            return redirect('/');
         }
 
         return back()->withErrors('Whoops! Please try to login again.');
