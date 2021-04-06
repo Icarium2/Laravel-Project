@@ -15,7 +15,7 @@
                 <ul class="flex flex-col md:flex-row items-center">
                     <li>
                         <a href="#">
-                            <img src={{ asset('src/img/Logo.svg') }} alt="Logo" class="w-24">
+                            <img src={{ asset('src/img/Logo.svg') }} alt="Logo" class="w-32">
                         </a>
                     </li>
                     <li class="md:ml-8 mt-3 md:mt-0">
