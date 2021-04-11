@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ContentModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class MoviesController extends Controller
@@ -16,12 +17,12 @@ class MoviesController extends Controller
     public function index()
     {
         $popularMovies = Http::withToken(config('services.tmdb.token'))
-        ->get('https://api.themoviedb.org/3/movie/popular')
-        ->json()['results'];
+            ->get('https://api.themoviedb.org/3/movie/popular')
+            ->json()['results'];
 
         $popularTvShows = Http::withToken(config('services.tmdb.token'))
-        ->get('https://api.themoviedb.org/3/tv/popular')
-        ->json()['results'];
+            ->get('https://api.themoviedb.org/3/tv/popular')
+            ->json()['results'];
 
 
         dump($popularMovies);
@@ -29,9 +30,8 @@ class MoviesController extends Controller
         return view('content', [
             'popularMovies' => $popularMovies,
             'popularTvShows' => $popularTvShows
-            
+
         ]);
-        
     }
 
     /**
@@ -63,7 +63,16 @@ class MoviesController extends Controller
      */
     public function show($id)
     {
-        //
+        $movie = Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/movie/' . $id)
+            ->json();
+
+        $user = Auth::user();
+
+        return view('show', [
+            'movie' => $movie,
+            'user' => $user
+        ]);
     }
 
     /**
