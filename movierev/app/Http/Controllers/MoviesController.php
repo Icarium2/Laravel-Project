@@ -26,7 +26,6 @@ class MoviesController extends Controller
             ->json()['results'];
 
 
-        dump($popularMovies);
         $viewModel = new ContentModel($popularMovies, $popularTvShows);
         return view('content', [
             'popularMovies' => $popularMovies,
