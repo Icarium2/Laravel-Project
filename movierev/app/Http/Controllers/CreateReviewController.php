@@ -17,7 +17,8 @@ class CreateReviewController extends Controller
     public function __invoke(Request $request)
     {
         $this->validate($request, [
-            // Do the validation
+            'movie_id' => 'integer',
+            'content' => 'required|string'
         ]);
         $review = new Review();
         $review->user_id = Auth::id();

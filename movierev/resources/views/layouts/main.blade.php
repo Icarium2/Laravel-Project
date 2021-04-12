@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>      
+    <title>Movierev</title>
 </head>
 <body class="font-sans bg-gray-900 text-white">
     <nav class="border-b border-gray-800">
@@ -50,8 +50,8 @@
                 @if (Auth::check())
                 <div class="flex">
                     <a href="/profile">
-                        <img src={{ asset('src/img/avatar.jpg') }} 
-                        alt="avatar" 
+                        <img src={{ asset('src/img/avatar.jpg') }}
+                        alt="avatar"
                         class="rounded-full w-8 h-8">
                     </a>
                     <a href="/logout" class="ml-3">Logout
