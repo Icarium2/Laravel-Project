@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class TVController extends Controller
 {
@@ -45,7 +48,16 @@ class TVController extends Controller
      */
     public function show($id)
     {
-        //
+        $tv = Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/tv/' . $id)
+            ->json();
+
+        $reviews = DB::table('reviews')->whereNotNull('tv_id')->get();
+
+        return view('tv.show', [
+            'tv' => $tv,
+            'reviews' => $reviews
+        ]);
     }
 
     /**

@@ -2,7 +2,7 @@
     <div class="w-1/4 m-2 bg-white h-16"></div>
     <div class="w-3/4">
         <div class="flex flex-col">
-            <span class="text-black">{{ $tv['name'] }}</span>
+            <span class="text-black"><a href="/tv/{{ $tv['id'] }}">{{ $tv['name'] }}</a></span>
             <span class="text-black ">{{ $tv['overview'] }}</span>
         </div>
         <div class="mx-auto w-full flex justify-between">

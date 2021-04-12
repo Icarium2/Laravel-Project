@@ -22,6 +22,7 @@ class CreateReviewController extends Controller
         $review = new Review();
         $review->user_id = Auth::id();
         $review->movie_id = $request->input('movie_id');
+        $review->tv_id = $request->input('tv_id');
         $review->content = $request->input('content');
         $review->save();
 

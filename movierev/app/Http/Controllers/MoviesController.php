@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ContentModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class MoviesController extends Controller
@@ -67,11 +68,11 @@ class MoviesController extends Controller
             ->get('https://api.themoviedb.org/3/movie/' . $id)
             ->json();
 
-        $user = Auth::user();
+        $reviews = DB::table('reviews')->whereNotNull('movie_id')->get();
 
-        return view('show', [
+        return view('movies.show', [
             'movie' => $movie,
-            'user' => $user
+            'reviews' => $reviews
         ]);
     }
 

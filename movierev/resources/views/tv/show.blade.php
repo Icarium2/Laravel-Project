@@ -3,16 +3,16 @@
 @section('content')
 
     <div>
-        <p>{{ $movie['title'] }}</p>
-        <p>{{ $movie['overview'] }}</p>
-        <p>{{ $movie['vote_average']}}</p>
+        <p>{{ $tv['name'] }}</p>
+        <p>{{ $tv['overview'] }}</p>
+        <p>{{ $tv['vote_average']}}</p>
     </div>
     <div>
         <h2>Post a review</h2>
         <form action="/review" method="POST">
             @csrf
             <div>
-                <input type="hidden" name="movie_id" id="movie_id" value="{{ $movie['id'] }}">
+                <input type="hidden" name="tv_id" id="tv_id" value="{{ $tv['id'] }}">
                 <label for="content">Content</label>
                 <textarea name="content" id="content" cols="50" rows="10" class="text-black"></textarea>
             </div>
@@ -21,11 +21,13 @@
     </div>
     <div>
         <ul>
-            @foreach ($user->reviews as $review)
+            @isset($reviews)
+                @foreach ($reviews as $review)
                 <li>
                     <p>{{ $review->content }}</p>
                 </li>
-            @endforeach
+                @endforeach
+            @endisset
         </ul>
     </div>
 
