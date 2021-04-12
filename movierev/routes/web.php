@@ -8,6 +8,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TVController;
+use App\Http\Controllers\UserSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,4 @@ Route::view('authorization', 'login')->name('login')->middleware('guest');
 Route::post('login', LoginController::class)->middleware('guest');
 Route::get('profile', ProfileController::class)->middleware('auth');
 Route::get('logout', LogoutController::class);
+Route::view('/settings', 'settings')->middleware('auth');
