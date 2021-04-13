@@ -12,7 +12,7 @@
             <p>Score: {{ $movie['vote_average']}}</p>
         </div>
     </div>
-    <div class="container flex flex-col m-10">
+    <div class="container mx-auto flex flex-col p-10">
         <form action="/review" method="POST">
             @csrf
             <div class="flex flex-col">
@@ -25,13 +25,19 @@
              </div>
         </form>
     </div>
-    <div>
-        <ul>
-            @foreach ($reviews as $review)
-                <li>
-                    <p>{{ $review->content }}</p>
+    <div class="container mx-auto">
+        <ul class="w-full flex flex-col items-center p-10 ">
+            @isset($reviews)
+                @foreach ($reviews as $review)
+                <li class="m-10 border border-solid border-gray-500 w-full rounded-md">
+                    <p class="py-2 px-4">{{ $review->name }}</p>
+                    <div class="border border-solid border-gray-500 rounded-md p-2 mx-2 mb-2 overflow-auto">
+                        <p>{{ $review->content }}</p>
+                    </div>
+
                 </li>
-            @endforeach
+                @endforeach
+            @endisset
         </ul>
     </div>
 
