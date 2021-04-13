@@ -14,7 +14,7 @@ class LoginController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (Auth::attempt($credentials)) {
-            return redirect('/');
+            return back();
         }
 
         return back()->withErrors('Whoops! Please try to login again.');

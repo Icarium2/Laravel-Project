@@ -52,7 +52,11 @@ class TVController extends Controller
             ->get('https://api.themoviedb.org/3/tv/' . $id)
             ->json();
 
-        $reviews = DB::table('reviews')->where('tv_id', $id)->get();
+        $reviews = DB::table('reviews')
+            ->join('users', 'reviews.user_id', '=', 'users.id')
+            ->select('reviews.*', 'users.name')
+            ->where('reviews.tv_id', $id)
+            ->get();
 
         return view('tv.show', [
             'tv' => $tv,

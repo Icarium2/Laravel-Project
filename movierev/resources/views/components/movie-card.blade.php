@@ -1,5 +1,7 @@
 <div class="w-full bg-gray-300 flex items-center my-3">
-    <div class="w-1/4 m-2 bg-white h-16"></div>
+    <div class="w-1/4 m-2 bg-white h-16">
+        <img src="https://image.tmdb.org/t/p/w500/{{ $movie['poster_path'] }}" alt="Movie Poster">
+    </div>
     <div class="w-3/4">
         <div class="flex flex-col">
             <span class="text-black"><a href="/movies/{{ $movie['id'] }}">{{ $movie['title'] }}</a></span>

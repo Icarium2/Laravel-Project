@@ -36,7 +36,7 @@
     </div>
 
     <div class="trending lg:w-1/4 w-3/4 border border-black bg-white m-10 md:flex-shrink-0">
-        <h2 class="text-black">Popular TV Shows</h2>
+        <h2 class="text-black">Trending TV Shows</h2>
         @foreach ($popularTvShows as $tv)
 
             @if ($loop->index < 4)
