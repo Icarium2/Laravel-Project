@@ -26,6 +26,7 @@
         </form>
     </div>
     <div class="container mx-auto">
+        <h2>Reviews</h2>
         <ul class="w-full flex flex-col items-center p-10 ">
             @isset($reviews)
                 @foreach ($reviews as $review)

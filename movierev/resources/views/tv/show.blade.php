@@ -26,10 +26,11 @@
         </form>
     </div>
     <div class="container mx-auto">
-        <ul class="w-full flex flex-col items-center p-10 ">
+        <h2 class="px-10 text-lg">Reviews</h2>
+        <ul class="w-full flex flex-col items-center px-10">
             @isset($reviews)
                 @foreach ($reviews as $review)
-                <li class="m-10 border border-solid border-gray-500 w-full rounded-md">
+                <li class="mx-10 my-4 border border-solid border-gray-500 w-full rounded-md">
                     <p class="py-2 px-4">{{ $review->name }}</p>
                     <div class="border border-solid border-gray-500 rounded-md p-2 mx-2 mb-2 overflow-auto">
                         <p>{{ $review->content }}</p>
