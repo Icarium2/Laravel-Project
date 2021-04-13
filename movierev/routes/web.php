@@ -24,7 +24,9 @@ use App\Http\Controllers\UserSettingController;
 
 Route::get('/', [MoviesController::class, 'index'])->name('movies.index');
 Route::get('search', SearchController::class);
+Route::get('/movies', [MoviesController::class, 'list']);
 Route::get('/movies/{movie}', [MoviesController::class, 'show'])->name('movies.show');
+Route::get('tv', [TVController::class, 'list']);
 Route::get('/tv/{tv}', [TVController::class, 'show'])->name('tv.show');
 Route::post('register', RegisterController::class)->middleware('guest');
 Route::post('review', CreateReviewController::class)->middleware('auth');

@@ -4,7 +4,7 @@
 
     <div class="container flex flex-row p-10">
         <div>
-            <img src="https://image.tmdb.org/t/p/w780/{{ $movie['poster_path'] }}" alt="Movie Poster">
+            <img src="https://image.tmdb.org/t/p/w780/{{ $movie['poster_path'] }}" alt="Movie Poster" class="rounded-md">
         </div>
         <div class="ml-6">
             <p class="text-4xl mb-2">{{ $movie['title'] }}</p>

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('search')
+@section('content')
 
 
     @isset($searchResults)

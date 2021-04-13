@@ -14,9 +14,15 @@ class TVController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function list()
     {
-        //
+        $popularTvShows = Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/tv/popular')
+            ->json()['results'];
+
+        return view('tv.list', [
+            'popularTvShows' => $popularTvShows
+        ]);
     }
 
     /**

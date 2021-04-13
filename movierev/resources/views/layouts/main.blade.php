@@ -17,10 +17,10 @@
                     </a>
                 </li>
                 <li class="md:ml-8 mt-3 md:mt-0">
-                    <a href="/" class="hover:text-gray-300">Movies</a>
+                    <a href="/movies" class="hover:text-gray-300">Movies</a>
                 </li>
                 <li class="md:ml-6 mt-3 md:mt-0 mb-3 md:mb-0">
-                    <a href="#" class="hover:text-gray-300">TV Shows</a>
+                    <a href="/tv" class="hover:text-gray-300">TV Shows</a>
                 </li>
             </ul>
             <div class="flex flex-col md:flex-row items-center justify-center">
@@ -41,28 +41,27 @@
                             </svg>
                         </button>
                     </form>
-            </div>
-            <div class="md:ml-4 mt-3 md:mt-0">
-                @if (Auth::check())
-                <div class="flex">
-                    <a href="/profile">
-                        <img src={{ asset('src/img/avatar.jpg') }}
-                        alt="avatar"
-                        class="rounded-full w-8 h-8">
-                    </a>
-                    <a href="/logout" class="ml-3">Logout
-                    </a>
                 </div>
-                @else
-                <a href="/authorization" class="flex items-center">
-                    <p class="ml-3">Login</p>
-                </a>
-                @endif
+                <div class="md:ml-4 mt-3 md:mt-0">
+                    @if (Auth::check())
+                        <div class="flex">
+                            <a href="/profile">
+                                <img src={{ asset('src/img/avatar.jpg') }}
+                                alt="avatar"
+                                class="rounded-full w-8 h-8">
+                            </a>
+                            <a href="/logout" class="ml-3">Logout
+                            </a>
+                        </div>
+                    @else
+                        <a href="/authorization" class="flex items-center">
+                            <p class="ml-3">Login</p>
+                        </a>
+                    @endif
+                </div>
             </div>
         </div>
-    </div>
-</nav>
-@yield('search')
-@yield('content')
+    </nav>
+    @yield('content')
 </body>
 </html>

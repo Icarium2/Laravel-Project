@@ -38,6 +38,17 @@ class MoviesController extends Controller
         ]);
     }
 
+    public function list()
+    {
+        $popularMovies = Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/movie/popular')
+            ->json()['results'];
+
+        return view('movies.list', [
+            'popularMovies' => $popularMovies
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
