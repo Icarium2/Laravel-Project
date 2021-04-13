@@ -35,5 +35,6 @@ Route::post('login', LoginController::class)->middleware('guest');
 Route::get('profile', ProfileController::class)->middleware('auth');
 Route::get('logout', LogoutController::class);
 Route::view('/settings', 'settings')->middleware('auth');
+Route::view('user-reviews', 'user-reviews')->middleware('auth');
 Route::post('/user/update', [UserSettingController::class, 'updateUser'])->middleware('auth');
 Route::delete('/user/delete', [UserSettingController::class, 'destroy'])->middleware('auth');
