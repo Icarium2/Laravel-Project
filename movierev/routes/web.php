@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TVController;
 use App\Http\Controllers\UserSettingController;
 
@@ -22,6 +23,7 @@ use App\Http\Controllers\UserSettingController;
 */
 
 Route::get('/', [MoviesController::class, 'index'])->name('movies.index');
+Route::get('search', SearchController::class);
 Route::get('/movies/{movie}', [MoviesController::class, 'show'])->name('movies.show');
 Route::get('/tv/{tv}', [TVController::class, 'show'])->name('tv.show');
 Route::post('register', RegisterController::class)->middleware('guest');

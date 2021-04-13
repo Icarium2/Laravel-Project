@@ -3,7 +3,11 @@
     <div class="w-3/4">
         <div class="flex flex-col">
             <span class="text-black"><a href="/tv/{{ $tv['id'] }}">{{ $tv['name'] }}</a></span>
-            <span class="text-black ">{{ $tv['overview'] }}</span>
+            <span class="text-black text-xs">
+                @php
+                    echo substr($tv['overview'], 0 , 100) . '...';
+                @endphp
+            </span>
         </div>
         <div class="mx-auto w-full flex justify-between">
             <span class="text-black">score:{{ $tv['vote_average'] }}</span>

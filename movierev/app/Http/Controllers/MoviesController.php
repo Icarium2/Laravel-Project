@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContentModel;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class MoviesController extends Controller
 {
@@ -25,12 +27,13 @@ class MoviesController extends Controller
             ->get('https://api.themoviedb.org/3/tv/popular')
             ->json()['results'];
 
+        $newestReviewed = DB::table('reviews')->select('movie_id', 'tv_id')->orderBy('updated_at', 'ASC')->get();
 
-        $viewModel = new ContentModel($popularMovies, $popularTvShows);
+
         return view('content', [
             'popularMovies' => $popularMovies,
-            'popularTvShows' => $popularTvShows
-
+            'popularTvShows' => $popularTvShows,
+            'newestReviewed' => $newestReviewed
         ]);
     }
 
@@ -67,7 +70,7 @@ class MoviesController extends Controller
             ->get('https://api.themoviedb.org/3/movie/' . $id)
             ->json();
 
-        $reviews = DB::table('reviews')->whereNotNull('movie_id')->get();
+        $reviews = DB::table('reviews')->where('movie_id', $id)->get();
 
         return view('movies.show', [
             'movie' => $movie,
