@@ -22,9 +22,9 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => random_int(0, 100000),
+            'user_id'  => random_int(0, 100000),
             'movie_id' => random_int(0, 100000),
-            'content' => 'Fake content'
+            'content'  => 'Fake content',
         ];
     }
 }
