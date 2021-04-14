@@ -8,67 +8,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class UserSettingController extends Controller
 {
-<<<<<<< HEAD
-	
-	public function updateUser(Request $request)
-	{		
-		$user = User::find(Auth::id());
-		
-		$updates = [];
-		if ($request->input('email') !== null)
-		{
-			$updates['email'] = $request->input('email');
-		}
-		
-		if ($request->input('currentPassword') !== null)
-		{
-			if(Hash::check($request->input('currentPassword'), $user->password))
-			{
-				
-				$updates['password'] = Hash::make($request->input('password'));		
-			}
-		}
-
-		$user->update($updates);
-		$user->save();
-		return redirect()->back()->with('success', 'updated ' . join(', ', array_keys($updates)));		
-
-	}
-		public function destroy(Request $request)
-		{
-			$user = User::find(Auth::id());
-			$user->delete();
-			return redirect('/');
-		}
-
-		
-		public function uploadAvatar(Request $request)
-		{
-			
-			$request->validate([
-				'avatar' => 'required|image|mimes:jpeg,png,jpg|max:2048'
-			]);
-	
-			$user = User::findOrFail(auth()->user());
-	
-			if($request->has('avatar')) {
-				$image = $request->file('avatar');
-				$name = Str::slug($user->name . '_' . time());
-				$folder = '/uploads/images/';
-				$filePath = $folder . $name . '.' . $image->getClientOriginalExtension();
-				$this->uploadOne($image, $folder, 'public', $name);
-				$user->avatar = $filePath;
-			}
-	
-			$user->save();
-			dd($request);
-			return back()->with(['status' => 'Image uploaded successfully']);
-
-		}
-=======
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function updateUser(Request $request)
     {
         $user = User::find(Auth::id());
@@ -80,21 +28,38 @@ class UserSettingController extends Controller
 
         if ($request->input('currentPassword') !== null) {
             if (Hash::check($request->input('currentPassword'), $user->password)) {
-                $updates['password'] = Hash::make($request->input('newPassword'));
+
+                $updates['password'] = Hash::make($request->input('password'));
             }
         }
+
         $user->update($updates);
         $user->save();
-
-        return redirect()->back()->with('success', 'updated '.join(', ', array_keys($updates)));
+        return redirect()->back()->with('success', 'updated ' . join(', ', array_keys($updates)));
     }
 
-    public function destroy(Request $request)
+    public function destroy()
     {
         $user = User::find(Auth::id());
-        $user->delete();
-
+        $user->forceDelete();
         return redirect('/');
     }
->>>>>>> 03cdeea39f71b707ff87e0148bbc2d9927796a33
+
+
+    public function uploadAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $user = User::find(Auth::id());
+
+        $fileName = time() . '_' . $request->file('avatar')->getClientOriginalName();
+        $filePath = $request->file('avatar')->storeAs('uploads', $fileName, 'public');
+
+        $user->avatar = '/storage/' . $filePath;
+        $user->save();
+
+        return back()->with(['status' => 'Image uploaded successfully']);
+    }
 }

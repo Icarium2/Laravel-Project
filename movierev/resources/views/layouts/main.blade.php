@@ -46,9 +46,13 @@
                     @if (Auth::check())
                         <div class="flex">
                             <a href="/profile">
-                                <img src={{ asset('src/img/avatar.jpg') }}
-                                alt="avatar"
-                                class="rounded-full w-8 h-8">
+                                @if (Auth::user()->avatar !== null)
+                                    <img src={{ asset(Auth::user()->avatar) }}
+                                    alt="avatar"
+                                    class="rounded-full w-8 h-8">
+                                @else
+                                    <div class="w-8 h-8 bg-white rounded-full"></div>
+                                @endif
                             </a>
                             <a href="/logout" class="ml-3">Logout
                             </a>

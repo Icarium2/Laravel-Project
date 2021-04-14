@@ -2,10 +2,10 @@
 
 @section('content')
 @include('errors')
-@if (\Session::has('success'))
+@if (\Session::has('status'))
     <div class="alert alert-success">
         <ul>
-            <li>{!! \Session::get('success') !!}</li>
+            <li>{!! \Session::get('status') !!}</li>
         </ul>
     </div>
 @endif
@@ -32,14 +32,14 @@
         <button type="submit" class="m-3 bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-red-800 focus:ring-opacity-50 px-2 ...">Update Settings</button>
     </form>
     <h2 class="mb-2 text-xl">Upload Avatar</h2>
-    <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data" class="flex flex-col">
+    <form action="/user/upload" method="POST" enctype="multipart/form-data" class="flex flex-col">
         @csrf
         @method('patch')
-        <input type="file" name="avatar" class="border border-2 border-white w-52">
-        <input type="submit" value="upload" class="m-10 bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-red-800 focus:ring-opacity-50 px-2 ...">
+        <input type="file" name="avatar" class="border-2 border-white w-52">
+        <button type="submit" class="m-10 bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-red-800 focus:ring-opacity-50 px-2">Submit</button>
     </form>
     <h2 class="mb-5 text-xl">Delete Account</h2>
-    <form action="/user/delete" class="mt-10 mb-10">
+    <form action="/user/delete" class="mt-10 mb-10" method="POST">
         @csrf
         @method('delete')
         <button class="bg-red-800 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-800 focus:ring-opacity-50 px-2 ..." type="submit">Delete Account</button>
