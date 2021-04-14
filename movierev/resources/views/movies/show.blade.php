@@ -17,7 +17,7 @@
             @csrf
             <div class="flex flex-col">
                 <input type="hidden" name="movie_id" id="movie_id" value="{{ $movie['id'] }}">
-                <label for="content">Post a review</label>
+                <label for="content">Review this movie</label>
                 <textarea class="rounded-md text-black p-2 h-48" name="content" id="content"></textarea>
             </div>
             <div class="inline-block mr-2 mt-2">
@@ -26,7 +26,7 @@
         </form>
     </div>
     <div class="container mx-auto">
-        <h2>Reviews</h2>
+        <h2 class="px-10 text-lg">Recent Reviews</h2>
         <ul class="w-full flex flex-col items-center p-10 ">
             @isset($reviews)
                 @foreach ($reviews as $review)

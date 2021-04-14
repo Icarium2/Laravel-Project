@@ -16,7 +16,7 @@
       <a class="text-blue-500 hover:text-blue-800" href="/settings">Account Settings</a>
     </li>
     <li class="mr-6">
-      <a class="text-blue-500 hover:text-blue-800" href="#">My Reviews</a>
+      <a class="text-blue-500 hover:text-blue-800" href="/user-reviews">My Reviews</a>
     </li>
     <li class="mr-6">
       <a class="text-blue-500 hover:text-blue-800" href="#">Link</a>
