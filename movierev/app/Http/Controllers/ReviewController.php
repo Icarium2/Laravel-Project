@@ -2,26 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 
-class TVController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function list()
+    public function index()
     {
-        $popularTvShows = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/tv/popular')
-            ->json()['results'];
-
-        return view('tv.list', [
-            'popularTvShows' => $popularTvShows,
-        ]);
+        //
     }
 
     /**
@@ -31,7 +25,6 @@ class TVController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -43,7 +36,18 @@ class TVController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'movie_id' => 'integer',
+            'content'  => 'required|string',
+        ]);
+        $review = new Review();
+        $review->user_id = Auth::id();
+        $review->movie_id = $request->input('movie_id');
+        $review->tv_id = $request->input('tv_id');
+        $review->content = $request->input('content');
+        $review->save();
+
+        return back();
     }
 
     /**
@@ -55,20 +59,7 @@ class TVController extends Controller
      */
     public function show($id)
     {
-        $tv = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/tv/'.$id)
-            ->json();
-
-        $reviews = DB::table('reviews')
-            ->join('users', 'reviews.user_id', '=', 'users.id')
-            ->select('reviews.*', 'users.name')
-            ->where('reviews.tv_id', $id)
-            ->get();
-
-        return view('tv.show', [
-            'tv'      => $tv,
-            'reviews' => $reviews,
-        ]);
+        //
     }
 
     /**
@@ -93,7 +84,15 @@ class TVController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'content' => 'required|string',
+        ]);
+
+        $review = Review::find($id);
+        $review->content = $request->input('content');
+        $review->save();
+
+        return back();
     }
 
     /**
@@ -105,6 +104,9 @@ class TVController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $review = Review::find($id);
+        $review->forceDelete();
+
+        return back();
     }
 }

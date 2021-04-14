@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 
 
 use Illuminate\Support\Facades\Route;
@@ -7,11 +8,23 @@ use App\Http\Controllers\TVController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MoviesController;
+=======
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReviewController;
+>>>>>>> 03cdeea39f71b707ff87e0148bbc2d9927796a33
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserSettingController;
+<<<<<<< HEAD
 use App\Http\Controllers\CreateReviewController;
+=======
+use Illuminate\Support\Facades\Route;
+>>>>>>> 03cdeea39f71b707ff87e0148bbc2d9927796a33
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +44,9 @@ Route::get('/movies/{movie}', [MoviesController::class, 'show'])->name('movies.s
 Route::get('tv', [TVController::class, 'list']);
 Route::get('/tv/{tv}', [TVController::class, 'show'])->name('tv.show');
 Route::post('register', RegisterController::class)->middleware('guest');
-Route::post('review', CreateReviewController::class)->middleware('auth');
+Route::post('review', [ReviewController::class, 'store'])->middleware('auth');
+Route::patch('review/{id}/update', [ReviewController::class, 'update'])->name('review.update')->middleware('auth');
+Route::delete('review/{id}/delete', [ReviewController::class, 'destroy'])->name('review.delete')->middleware('auth');
 Route::view('authorization', 'login')->name('login')->middleware('guest');
 Route::post('login', LoginController::class)->middleware('guest');
 Route::get('profile', ProfileController::class)->middleware('auth');

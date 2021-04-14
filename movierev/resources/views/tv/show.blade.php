@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container flex flex-row p-10">
+    <div class="container flex flex-col sm:flex-row p-10">
         <div>
             <img src="https://image.tmdb.org/t/p/w780/{{ $tv['poster_path'] }}" alt="Movie Poster" class="rounded-md">
         </div>
@@ -27,15 +27,30 @@
     </div>
     <div class="container mx-auto">
         <h2 class="px-10 text-lg">Reviews</h2>
-        <ul class="w-full flex flex-col items-center px-10">
+        <ul class="w-full flex flex-col items-center p-10 ">
             @isset($reviews)
                 @foreach ($reviews as $review)
-                <li class="mx-10 my-4 border border-solid border-gray-500 w-full rounded-md">
+                <li class="m-10 border border-solid border-gray-500 w-full rounded-md">
                     <p class="py-2 px-4">{{ $review->name }}</p>
-                    <div class="border border-solid border-gray-500 rounded-md p-2 mx-2 mb-2 overflow-auto">
-                        <p>{{ $review->content }}</p>
-                    </div>
-
+                    @if ($review->user_id === Auth::id())
+                        <div class="border border-solid border-gray-500 rounded-md p-2 mx-2 mb-2 overflow-auto relative">
+                            <form action="{{ route('review.update', ['id' => $review->id]) }}" method="post" >
+                                @csrf
+                                @method('patch')
+                                <textarea class="rounded-md text-black p-2 w-full" name="content" id="content">{{ $review->content }}</textarea>
+                                <button type="submit" class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg">Update</button>
+                            </form>
+                            <form action="{{ route('review.delete', ['id' => $review->id])}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-red-500 hover:bg-red-600 hover:shadow-lg absolute bottom-2 right-2">Delete</button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="border border-solid border-gray-500 rounded-md p-2 mx-2 mb-2 overflow-auto">
+                            <p>{{ $review->content }}</p>
+                        </div>
+                    @endif
                 </li>
                 @endforeach
             @endisset

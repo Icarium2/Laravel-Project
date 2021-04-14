@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserSettingController extends Controller
 {
+<<<<<<< HEAD
 	
 	public function updateUser(Request $request)
 	{		
@@ -67,4 +68,33 @@ class UserSettingController extends Controller
 			return back()->with(['status' => 'Image uploaded successfully']);
 
 		}
+=======
+    public function updateUser(Request $request)
+    {
+        $user = User::find(Auth::id());
+
+        $updates = [];
+        if ($request->input('email') !== null) {
+            $updates['email'] = $request->input('email');
+        }
+
+        if ($request->input('currentPassword') !== null) {
+            if (Hash::check($request->input('currentPassword'), $user->password)) {
+                $updates['password'] = Hash::make($request->input('newPassword'));
+            }
+        }
+        $user->update($updates);
+        $user->save();
+
+        return redirect()->back()->with('success', 'updated '.join(', ', array_keys($updates)));
+    }
+
+    public function destroy(Request $request)
+    {
+        $user = User::find(Auth::id());
+        $user->delete();
+
+        return redirect('/');
+    }
+>>>>>>> 03cdeea39f71b707ff87e0148bbc2d9927796a33
 }
