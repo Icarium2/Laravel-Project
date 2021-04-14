@@ -32,7 +32,7 @@
         <button type="submit" class="m-3 bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-red-800 focus:ring-opacity-50 px-2 ...">Update Settings</button>
     </form>
     <h2 class="mb-2 text-xl">Upload Avatar</h2>
-    <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data" class="flex flex-col">
+    <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col">
         @csrf
         @method('patch')
         <input type="file" name="avatar" class="border border-2 border-white w-52">

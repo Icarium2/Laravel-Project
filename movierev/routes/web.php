@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 
 
 use Illuminate\Support\Facades\Route;
@@ -8,23 +7,11 @@ use App\Http\Controllers\TVController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MoviesController;
-=======
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\MoviesController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\ReviewController;
->>>>>>> 03cdeea39f71b707ff87e0148bbc2d9927796a33
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserSettingController;
-<<<<<<< HEAD
 use App\Http\Controllers\CreateReviewController;
-=======
-use Illuminate\Support\Facades\Route;
->>>>>>> 03cdeea39f71b707ff87e0148bbc2d9927796a33
 
 /*
 |--------------------------------------------------------------------------

@@ -36,15 +36,9 @@ return [
         ],
 
         'public' => [
-<<<<<<< HEAD
             'driver' => 'local',
             'root' => public_path(),
             'url' => env('APP_URL').'/public',
-=======
-            'driver'     => 'local',
-            'root'       => storage_path('app/public'),
-            'url'        => env('APP_URL').'/storage',
->>>>>>> 03cdeea39f71b707ff87e0148bbc2d9927796a33
             'visibility' => 'public',
         ],
 
