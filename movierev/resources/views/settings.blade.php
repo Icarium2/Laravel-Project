@@ -13,19 +13,19 @@
     <h2 class="mb-0.5 text-4xl">Account Settings</h2>
     <form action="/user/update" class="flex justify-center items-center flex-col max-w-sm m-2 p-14" method="post">
      @csrf
-        <div>
+        <div class="flex justify-center items-center flex-col">
             <label for="currentPassword" class="p-1">Old Password</label>
             <input class="text-black border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent ..." type="password" name="currentPassword">
         </div>
-        <div>
+        <div class="flex justify-center items-center flex-col">
             <label for="newPassword" class="p-1">New Password</label>
             <input class="text-black border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent ..." type="password" name="password">
         </div>
-        <div>
+        <div class="flex justify-center items-center flex-col">
             <label for="confirmPassword" class="p-1">Confirm New Password</label>
             <input class="text-black border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent ..." type="password" name="confirm_password">
         </div>
-        <div>
+        <div class="flex justify-center items-center flex-col">
             <label for="email" class="p-1">Update Email</label>
             <input class="text-black border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent ..." type="email" name="email">
         </div>
