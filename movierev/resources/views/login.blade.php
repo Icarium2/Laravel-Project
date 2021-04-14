@@ -3,6 +3,14 @@
 @section('content')
 
 @include('errors')
+
+@if (\Session::has('status'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('status') !!}</li>
+        </ul>
+    </div>
+@endif
 <div class="flex my-10 mx-auto justify-center items-center w-32">
     <form action="login" method="post">
         @csrf
