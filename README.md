@@ -1,5 +1,21 @@
 # Laravel-Project
 Group assignment in Laravel - YRGO / WU20 
+Made by [Jonathan](https://github.com/Icarium2) & [Jon](https://github.com/Trilisen)
+This was the first Laravel project either of us had ever made and we learned a lot!
+
+
+## To install this application
+
+1. Clone this repository
+2. cd into the movierev directory
+3. Configure your `.env` file
+4. Run the following commands:
+    `composer update`
+    `npm install`
+    `php artisan migrate`
+    `php artisan storage:link`
+5. Run `php artisan serve` and open the app in your browser.
+
 
 ### Code Review by [Martin](https://github.com/Alegherix) & [Felix](https://github.com/felixgren)
 - You could refer to a route when hyperlinking instead of hardcoding path such as in profile
