@@ -13,7 +13,7 @@
         </div>
         <div class="mx-auto w-full flex justify-between">
             <span class="text-black">Score: {{ $movie['vote_average'] }}</span>
-            <span class="text-black">Reviews</span>
+            <a href="/movies/{{ $movie['id'] }}"> <span class="text-black hover:text-blue-800" >Reviews</span></a>
         </div>
     </div>
 </div>
