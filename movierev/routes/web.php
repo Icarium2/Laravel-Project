@@ -39,7 +39,6 @@ Route::post('login', LoginController::class)->middleware('guest'); //tested
 Route::get('profile', ProfileController::class)->middleware('auth'); //tested
 Route::get('logout', LogoutController::class); //tested
 Route::view('/settings', 'settings')->middleware('auth'); //tested
-Route::view('user-reviews', 'user-reviews')->middleware('auth'); //obselete
 Route::post('/user/update', [UserSettingController::class, 'updateUser'])->middleware('auth'); //tested
 Route::delete('/user/delete', [UserSettingController::class, 'destroy'])->middleware('auth'); //tested
 Route::patch('/user/upload', [UserSettingController::class, 'uploadAvatar'])->middleware('auth');
