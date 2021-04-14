@@ -22,7 +22,7 @@ class SearchController extends Controller
         $query = str_replace(' ', '+', $request->input('search'));
 
         $result = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/search/multi?query=' . $query)
+            ->get('https://api.themoviedb.org/3/search/multi?query='.$query)
             ->json()['results'];
 
         return view('search', [

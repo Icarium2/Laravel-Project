@@ -47,7 +47,7 @@ class ReviewController extends Controller
         $review->content = $request->input('content');
         $review->save();
 
-        return redirect('/movies/' . $request->input('movie_id'));
+        return redirect('/movies/'.$request->input('movie_id'));
     }
 
     /**
