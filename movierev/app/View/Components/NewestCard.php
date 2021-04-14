@@ -8,7 +8,6 @@ class NewestCard extends Component
 {
     public $item;
 
-
     /**
      * Create a new component instance.
      *
@@ -18,7 +17,6 @@ class NewestCard extends Component
     {
         $this->movie = $item;
     }
-
 
     /**
      * Get the view / contents that represent the component.
