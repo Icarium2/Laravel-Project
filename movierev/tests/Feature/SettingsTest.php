@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class SettingsTest extends TestCase
@@ -50,10 +48,10 @@ class SettingsTest extends TestCase
             ->followingRedirects()
             ->actingAs($user)
             ->post('/user/update', [
-                'currentPassword' => $user->password,
-                'password' => 'updated',
+                'currentPassword'  => $user->password,
+                'password'         => 'updated',
                 'password_confirm' => 'updated',
-                'email' => 'example@example.com'
+                'email'            => 'example@example.com',
             ]);
 
         $response->assertStatus(200);
@@ -68,7 +66,7 @@ class SettingsTest extends TestCase
             ->followingRedirects()
             ->actingAs($user)
             ->patch('user/upload', [
-                'avatar' => 'fakeUrl'
+                'avatar' => 'fakeUrl',
             ]);
 
         $response->assertStatus(200);

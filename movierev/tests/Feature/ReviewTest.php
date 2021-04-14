@@ -5,12 +5,12 @@ namespace Tests\Feature;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ReviewTest extends TestCase
 {
     use RefreshDatabase;
+
     /** @test */
     public function posting_a_review_succeeds()
     {
@@ -20,7 +20,7 @@ class ReviewTest extends TestCase
             ->followingRedirects()
             ->post('/review', [
                 'movie_id' => '399566',
-                'content' => 'Testing 123'
+                'content'  => 'Testing 123',
             ]);
 
         $response->assertSee('Testing 123');
@@ -35,12 +35,12 @@ class ReviewTest extends TestCase
         $response = $this
             ->followingRedirects()
             ->actingAs($user)
-            ->patch('/review/' . $review->id . '/update', [
-                'content' => 'update'
+            ->patch('/review/'.$review->id.'/update', [
+                'content' => 'update',
             ]);
 
         $this->assertDatabaseHas('reviews', [
-            'content' => 'update'
+            'content' => 'update',
         ]);
     }
 
@@ -53,10 +53,10 @@ class ReviewTest extends TestCase
         $response = $this
             ->followingRedirects()
             ->actingAs($user)
-            ->delete('review/' . $review->id . '/delete');
+            ->delete('review/'.$review->id.'/delete');
 
         $this->assertDeleted('reviews', [
-            'content' => $review->content
+            'content' => $review->content,
         ]);
     }
 }
