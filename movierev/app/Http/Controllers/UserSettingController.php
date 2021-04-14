@@ -63,7 +63,6 @@ class UserSettingController extends Controller
 			}
 	
 			$user->save();
-			dd($request);
 			return back()->with(['status' => 'Image uploaded successfully']);
 
 		}
