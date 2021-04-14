@@ -6,7 +6,6 @@ use Illuminate\View\Component;
 
 class TvCard extends Component
 {
-
     public $tv;
 
     /**
@@ -18,8 +17,6 @@ class TvCard extends Component
     {
         $this->tv = $tv;
     }
-
- 
 
     /**
      * Get the view / contents that represent the component.

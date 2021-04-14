@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -21,7 +20,7 @@ class TVController extends Controller
             ->json()['results'];
 
         return view('tv.list', [
-            'popularTvShows' => $popularTvShows
+            'popularTvShows' => $popularTvShows,
         ]);
     }
 
@@ -38,7 +37,8 @@ class TVController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -49,13 +49,14 @@ class TVController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $tv = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/tv/' . $id)
+            ->get('https://api.themoviedb.org/3/tv/'.$id)
             ->json();
 
         $reviews = DB::table('reviews')
@@ -65,15 +66,16 @@ class TVController extends Controller
             ->get();
 
         return view('tv.show', [
-            'tv' => $tv,
-            'reviews' => $reviews
+            'tv'      => $tv,
+            'reviews' => $reviews,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -84,8 +86,9 @@ class TVController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -96,7 +99,8 @@ class TVController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
