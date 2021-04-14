@@ -30,6 +30,19 @@ class LoginTest extends TestCase
     }
 
     /** @test */
+    public function logout_user()
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->followingRedirects()
+            ->get('/logout');
+
+        $response->assertSee('Login');
+    }
+
+    /** @test */
     public function login_user_without_password()
     {
         $user = User::factory()->create();

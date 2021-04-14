@@ -60,6 +60,6 @@ class UserSettingController extends Controller
         $user->avatar = '/storage/' . $filePath;
         $user->save();
 
-        return back()->with(['status' => 'Image uploaded successfully']);
+        return view('/settings')->with(['status' => 'Image uploaded successfully']);
     }
 }

@@ -4,7 +4,10 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\Client\Request as ClientRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Tests\TestCase;
 
 class SearchTest extends TestCase
@@ -12,16 +15,16 @@ class SearchTest extends TestCase
     /** @test */
     public function search_results_are_correct()
     {
-        Http::fake([
-            'https://api.themoviedb.org/3/search/multi&query=' => $this->fakeSearchResult(),
-        ]);
+        // Http::fake([
+        //     'https://api.themoviedb.org/3/search/multi&query=' => $this->fakeSearchResult(),
+        // ]);
 
         $response = $this
             ->followingRedirects()
-            ->get('/search');
+            ->get('/search?search=falcon');
 
-        $response->assertSee('Search results for test');
-        $response->assertSee('Fdiwaodjo');
+        $response->assertSee('Search results for falcon');
+        $response->assertSee('The Falcon and the Winter Soldier');
     }
 
     private function fakeSearchResult()

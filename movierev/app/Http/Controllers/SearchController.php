@@ -25,8 +25,6 @@ class SearchController extends Controller
             ->get('https://api.themoviedb.org/3/search/multi?query=' . $query)
             ->json()['results'];
 
-        dd($result);
-
         return view('search', [
             'searchResults' => $result,
             'query'         => $query,
