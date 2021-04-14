@@ -10,25 +10,26 @@ class SearchController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request)
     {
         $request->validate([
-            'search' => 'required|string'
+            'search' => 'required|string',
         ]);
         $query = str_replace(' ', '+', $request->input('search'));
 
         $result = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/search/multi?query=' . $query)
+            ->get('https://api.themoviedb.org/3/search/multi?query='.$query)
             ->json()['results'];
 
         // dd($result);
 
         return view('search', [
             'searchResults' => $result,
-            'query' => $query
+            'query'         => $query,
         ]);
     }
 }

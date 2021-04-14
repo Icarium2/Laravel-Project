@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContentModel;
-use App\Models\Review;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 
 class MoviesController extends Controller
 {
@@ -30,11 +25,10 @@ class MoviesController extends Controller
 
         $newestReviewed = DB::table('reviews')->select('movie_id', 'tv_id')->orderBy('updated_at', 'ASC')->get();
 
-
         return view('content', [
-            'popularMovies' => $popularMovies,
+            'popularMovies'  => $popularMovies,
             'popularTvShows' => $popularTvShows,
-            'newestReviewed' => $newestReviewed
+            'newestReviewed' => $newestReviewed,
         ]);
     }
 
@@ -45,7 +39,7 @@ class MoviesController extends Controller
             ->json()['results'];
 
         return view('movies.list', [
-            'popularMovies' => $popularMovies
+            'popularMovies' => $popularMovies,
         ]);
     }
 
@@ -62,7 +56,8 @@ class MoviesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -73,13 +68,14 @@ class MoviesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $movie = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/movie/' . $id)
+            ->get('https://api.themoviedb.org/3/movie/'.$id)
             ->json();
 
         $reviews = DB::table('reviews')
@@ -89,15 +85,16 @@ class MoviesController extends Controller
             ->get();
 
         return view('movies.show', [
-            'movie' => $movie,
-            'reviews' => $reviews
+            'movie'   => $movie,
+            'reviews' => $reviews,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -108,8 +105,9 @@ class MoviesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -120,7 +118,8 @@ class MoviesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
