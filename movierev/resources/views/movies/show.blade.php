@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container flex flex-row p-10">
+    <div class="container flex flex-col sm:flex-row p-10">
         <div>
             <img src="https://image.tmdb.org/t/p/w780/{{ $movie['poster_path'] }}" alt="Movie Poster" class="rounded-md">
         </div>
