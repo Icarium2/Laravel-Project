@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MoviesController::class, 'index'])->name('movies.index'); //tested
-Route::get('search', SearchController::class)->name('search');
+Route::get('search', SearchController::class);
 Route::get('/movies', [MoviesController::class, 'list'])->name('movies.list'); //tested
 Route::get('/movies/{movie}', [MoviesController::class, 'show'])->name('movies.show'); //tested
 Route::get('tv', [TVController::class, 'list']); //tested

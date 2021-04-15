@@ -26,7 +26,6 @@
             <div class="flex flex-col md:flex-row items-center justify-center">
                 <div class="relative ml-2">
                     <form action="/search" method="GET">
-                        @csrf
                         <input type="text" class="bg-gray-800 pl-8 mt-0 md-mt-3 text-sm rounded-full w-48 lg:w-64 px-4 py-1 focus:outline-none focus:shadow-outline"
                         placeholder="Search" name="search" id="search">
                         <button type="submit" class="absolute left-0">
